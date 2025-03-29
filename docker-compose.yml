@@ -1,0 +1,35 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8787:8787"
+    volumes:
+      - .:/myapp/      
+    depends_on:
+      - db
+    environment:
+      - JWT_SECRET=PXEEFAjy9z9gMM23Pk4p
+    networks:
+      - nest-network
+
+  db:
+    image: mongo:latest
+    container_name: dbmongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGGO_INITDB_ROOT_USERNAME: root
+      MONGGO_INITDB_ROOT_PASSWORD: klsxx
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - nest-network
+
+networks:
+  nest-network: 
+
+volumes:
+  mongodb_data:
+
