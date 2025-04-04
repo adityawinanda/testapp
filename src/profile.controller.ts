@@ -35,7 +35,15 @@ export class ProfileController {
   async updateProfile(@Req() req: any, @Body() profile: ProfileDto): Promise<SuccessResponse> {
     const userId: string = req.user.id;
 
-    const updated = this.profileService.updateProfile(userId, profile);    
+    const updated = await this.profileService.updateProfile(
+      userId,
+      profile.displayName,
+      profile.gender,
+      profile.birthday,
+      profile.weight,
+      profile.height,
+      profile.measurementUnit
+    );    
     if (!updated) {
       throw new HttpException("Cannot update profile", HttpStatus.FORBIDDEN);
     }

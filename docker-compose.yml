@@ -9,10 +9,22 @@ services:
       - .:/myapp/      
     depends_on:
       - db
+      - ribbit
     environment:
       - JWT_SECRET=PXEEFAjy9z9gMM23Pk4p
+      - RABBIT_URI=amqp://rib:klsxx@ribbit:5672
     networks:
       - nest-network
+
+  ribbit:
+    image: rabbitmq:4-management
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+    environment:
+      RABBITMQ_DEFAULT_USER: rib
+      RABBITMQ_DEFAULT_PASS: klsxx
 
   db:
     image: mongo:latest

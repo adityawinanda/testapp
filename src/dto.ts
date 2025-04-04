@@ -2,6 +2,8 @@ import { HttpStatus } from "@nestjs/common";
 import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsString, Matches } from 'class-validator';
 import { Gender, MeasurementUnit } from "./profile.service";
 
+export const UnexpectedMessage = "Something is wrong";
+
 export interface SuccessResponse {
     status: HttpStatus;
     payload: any;
