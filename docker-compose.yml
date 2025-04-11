@@ -26,6 +26,9 @@ services:
       RABBITMQ_DEFAULT_USER: rib
       RABBITMQ_DEFAULT_PASS: klsxx
 
+    networks:
+      - nest-network
+
   db:
     image: mongo:latest
     container_name: dbmongo
